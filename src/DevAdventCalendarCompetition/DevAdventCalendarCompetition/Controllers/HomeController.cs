@@ -21,7 +21,7 @@ namespace DevAdventCalendarCompetition.Controllers
 
         public ActionResult Index()
         {
-            var tests = _context.Set<Test>().ToList();
+            var tests = _context.Tests.ToList();
             var currentTest = tests.FirstOrDefault(el => el.Status == TestStatus.Started);
             if (currentTest == null)
                 return View();
@@ -40,7 +40,7 @@ namespace DevAdventCalendarCompetition.Controllers
 
         public ActionResult Results()
         {
-            var tests = _context.Set<Test>()
+            var tests = _context.Tests
                 .Include(t => t.Answers)
                 .ThenInclude(ta => ta.User)
                 .OrderBy(el => el.Number).ToList();

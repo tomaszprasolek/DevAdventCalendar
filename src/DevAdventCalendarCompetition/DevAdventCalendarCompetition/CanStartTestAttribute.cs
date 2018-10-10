@@ -19,7 +19,7 @@ namespace DevAdventCalendarCompetition
             // TODO refactor
             //var context = new ApplicationDbContext();
 
-            //var test = context.Set<Test>().First(el => el.Number == TestNumber);
+            //var test = context.Tests.First(el => el.Number == TestNumber);
             //if (test.Status != TestStatus.Started)
             //{
             //    var url = test.Status == TestStatus.NotStarted

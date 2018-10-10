@@ -18,7 +18,7 @@ namespace DevAdventCalendarCompetition.Controllers
         [CanStartTest(TestNumber = 5)]
         public ActionResult Index()
         {
-            var test = _context.Set<Test>().First(el => el.Number == 5);
+            var test = _context.Tests.First(el => el.Number == 5);
             return View(test);
         }
 
@@ -34,7 +34,7 @@ namespace DevAdventCalendarCompetition.Controllers
             if (integralSolution != 44.0)
             {
                 ModelState.AddModelError("", "Answer is not correct. Try again.");
-                var test = _context.Set<Test>().First(el => el.Number == 5);
+                var test = _context.Tests.First(el => el.Number == 5);
                 return View("Index", test);
             }
 

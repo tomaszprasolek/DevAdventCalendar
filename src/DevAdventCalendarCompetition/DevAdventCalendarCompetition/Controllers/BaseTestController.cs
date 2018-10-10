@@ -23,7 +23,7 @@ namespace DevAdventCalendarCompetition.Controllers
 
         public ActionResult SaveAnswerAndRedirect(int testNumber)
         {
-            var test = _context.Set<Test>().First(el => el.Number == testNumber);
+            var test = _context.Tests.First(el => el.Number == testNumber);
             var testAnswer = new TestAnswer()
             {
                 TestId = test.Id,

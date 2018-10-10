@@ -31,7 +31,7 @@ namespace DevAdventCalendarCompetition.Controllers
             if (fixedAnswer != "0100111101000010010010100100010101000011010101000100100101010110010010010101010001011001")
             {
                 ModelState.AddModelError("", "Answer is not correct. Try again.");
-                var test = _context.Set<Test>().First(el => el.Number == 1);
+                var test = _context.Tests.First(el => el.Number == 1);
                 return View("Index", test);
             }
 

@@ -22,7 +22,7 @@ namespace DevAdventCalendarCompetition.Controllers
 
         public ActionResult Index()
         {
-            var tests = _context.Set<Test>().OrderBy(t => t.Number).ToList();
+            var tests = _context.Tests.OrderBy(t => t.Number).ToList();
 
             return View(tests);
         }
@@ -30,11 +30,11 @@ namespace DevAdventCalendarCompetition.Controllers
         [HttpPost]
         public ActionResult StartTest(int testId, string minutesString)
         {
-            var test = _context.Set<Test>().First(el => el.Id == testId);
+            var test = _context.Tests.First(el => el.Id == testId);
             if (test.Status != TestStatus.NotStarted)
                 throw new ArgumentException("Test was started");
 
-            var previousTest = _context.Set<Test>().FirstOrDefault(el => el.Number == test.Number - 1);
+            var previousTest = _context.Tests.FirstOrDefault(el => el.Number == test.Number - 1);
 
             if (previousTest != null && previousTest.Status != TestStatus.Ended)
                 throw new ArgumentException("Previous test has not ended");
@@ -57,7 +57,7 @@ namespace DevAdventCalendarCompetition.Controllers
         [HttpPost]
         public ActionResult EndTest(int testId)
         {
-            var test = _context.Set<Test>().First(el => el.Id == testId);
+            var test = _context.Tests.First(el => el.Id == testId);
             if (test.Status != TestStatus.Started)
                 throw new ArgumentException("Test was started");
 
@@ -79,7 +79,7 @@ namespace DevAdventCalendarCompetition.Controllers
                 return "Reset is not enabled.";
 
 
-            var tests = _context.Set<Test>().ToList();
+            var tests = _context.Tests.ToList();
             foreach (var test in tests)
             {
                 test.StartDate = null;
