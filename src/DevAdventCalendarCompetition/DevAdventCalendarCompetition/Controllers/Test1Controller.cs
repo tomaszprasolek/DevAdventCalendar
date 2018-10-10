@@ -18,7 +18,7 @@ namespace DevAdventCalendarCompetition.Controllers
         [CanStartTest(TestNumber = 1)]
         public ActionResult Index()
         {
-            var test = _context.Set<Test>().First(el => el.Number == 1);
+            var test = _context.Tests.FirstOrDefault(el => el.Number == 1);
             return View(test);
         }
 

@@ -10,6 +10,10 @@ namespace DevAdventCalendarCompetition.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Test> Tests;
+
+        public DbSet<TestAnswer> TestAnswers { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
