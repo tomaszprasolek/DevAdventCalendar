@@ -15,6 +15,8 @@ namespace DevAdventCalendarCompetition.Models
         public DateTime AnsweringTime { get; set; }
 
         public TimeSpan AnsweringTimeOffset { get; set; }
+
+        public string Answer { get; set; }
     }
 
     public class TestAnswerMapping : MappingBase<TestAnswer>
