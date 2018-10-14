@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DevAdventCalendarCompetition.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using DevAdventCalendarCompetition.Models;
-using DevAdventCalendarCompetition.Data;
+using System.Linq;
 
 namespace DevAdventCalendarCompetition.Controllers
 {

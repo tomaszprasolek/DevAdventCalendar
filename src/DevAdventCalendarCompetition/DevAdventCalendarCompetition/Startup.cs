@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using DevAdventCalendarCompetition.Data;
+﻿using DevAdventCalendarCompetition.Data;
 using DevAdventCalendarCompetition.Models;
 using DevAdventCalendarCompetition.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DevAdventCalendarCompetition
 {
@@ -35,7 +31,10 @@ namespace DevAdventCalendarCompetition
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "QuickApp API", Version = "v1" });            
+            }); 
             services.AddMvc();
         }
 
@@ -56,7 +55,11 @@ namespace DevAdventCalendarCompetition
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuickApp API V1");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
