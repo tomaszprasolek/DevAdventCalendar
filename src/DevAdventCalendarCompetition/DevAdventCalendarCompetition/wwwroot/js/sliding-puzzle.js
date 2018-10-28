@@ -105,9 +105,12 @@ $(function () {
 
     $(window).on("beforeunload", function() {
         if(started) {
+            var endTime = new Date();
+            var gameDuration = Math.ceil((endTime - startTime) / 1000);
+
             $.ajax({
                 type: "post",
-                data: { moveCount: moveCounter },
+                data: { moveCount: moveCounter, gameDuration: gameDuration },
                 url: puzzleUrl + "/ResetGame",
                 success: function(data) {
                     location.reload();
@@ -179,7 +182,7 @@ function moveTile(event) {
         $.ajax({
             type: "post",
             url: puzzleUrl + "/UpdateGameResult",
-            data: { moveCount: moveCounter, gameDuration: gameDuration, testEnd: endTime.toISOString().replace("T", " ").replace("Z", "") },
+            data: { moveCount: moveCounter, gameDuration: gameDuration },
             success: function() {
                 alert("Gratulacje! Puzzle ułożyłeś w " + moveCounter + " próbach, a zajęło Ci to " + gameDuration + " sekund.");
             },

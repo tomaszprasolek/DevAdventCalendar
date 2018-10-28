@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using DevAdventCalendarCompetition.Data;
-using DevAdventCalendarCompetition.Models;
+using DevAdventCalendarCompetition.Repository.Context;
+using DevAdventCalendarCompetition.Repository.Models;
 
 namespace DevAdventCalendarCompetition
 {

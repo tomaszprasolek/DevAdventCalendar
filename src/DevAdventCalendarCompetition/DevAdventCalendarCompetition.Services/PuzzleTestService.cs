@@ -42,26 +42,15 @@ namespace DevAdventCalendarCompetition.Services
             _baseTestRepository.AddAnswer(testAnswer);
         }
 
-        public void UpdatePuzzleTestAnswer(TestAnswerDto testAnswerDto, int moves, int gameDuration, string testEnd)
+        public void UpdatePuzzleTestAnswer(TestAnswerDto testAnswerDto, int movesCount, int gameDuration)
         {
             var testAnswer = _puzzleTestRepository.GetEmptyAnswerForStartedTestByUser(testAnswerDto.UserId);
-            testAnswer.Answer = moves.ToString();
-            testAnswer.AnsweringTime = DateTime.ParseExact(testEnd, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            testAnswer.Answer = movesCount.ToString();
+            testAnswer.AnsweringTime = DateTime.Now;
             testAnswer.AnsweringTimeOffset = TimeSpan.FromSeconds(gameDuration);
 
             _baseTestRepository.UpdateAnswer(testAnswer);
 
-        }
-
-        public void ResetGame(TestAnswerDto testAnswerDto, int moveCount)
-        {
-            var testAnswer = _puzzleTestRepository.GetEmptyAnswerForStartedTestByUser(testAnswerDto.UserId);
-
-            testAnswer.Answer = moveCount.ToString();
-            testAnswer.AnsweringTime = DateTime.Now;
-            testAnswer.AnsweringTimeOffset = TimeSpan.Zero;
-
-            _baseTestRepository.UpdateAnswer(testAnswer);
         }
     }
 }

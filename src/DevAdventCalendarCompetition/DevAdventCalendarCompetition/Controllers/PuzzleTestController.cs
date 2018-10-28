@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using DevAdventCalendarCompetition.Data;
-using DevAdventCalendarCompetition.Models;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using DevAdventCalendarCompetition.Repository.Context;
-using DevAdventCalendarCompetition.Repository.Models;
-using DevAdventCalendarCompetition.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using DevAdventCalendarCompetition.Services.Interfaces;
 
 namespace DevAdventCalendarCompetition.Controllers
 {
     public class PuzzleTestController : BaseTestController
     {
+        private readonly IPuzzleTestService _puzzleTestService;
+
         public PuzzleTestController(IBaseTestService baseTestService, IPuzzleTestService puzzleTestService) : base(baseTestService)
         {
+            _puzzleTestService = puzzleTestService;
             _puzzleTestService = puzzleTestService;
         }
 
@@ -61,13 +51,13 @@ namespace DevAdventCalendarCompetition.Controllers
         // TODO: Secure the game from changing values in view and possible winning the game without any effort.
 
         [HttpPost]
-        public IActionResult UpdateGameResult(int moveCount, int gameDuration, string testEnd)
+        public IActionResult UpdateGameResult(int moveCount, int gameDuration)
         {
             var testAnswer = _puzzleTestService.GetEmptyAnswerForStartedTestByUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             if (testAnswer != null)
             {
-                _puzzleTestService.UpdatePuzzleTestAnswer(testAnswer, moveCount, gameDuration, testEnd);
+                _puzzleTestService.UpdatePuzzleTestAnswer(testAnswer, moveCount, gameDuration);
 
                 return Ok();
             }
@@ -76,13 +66,13 @@ namespace DevAdventCalendarCompetition.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResetGame(int moveCount)
+        public IActionResult ResetGame(int moveCount, int gameDuration)
         {
             var testAnswer = _puzzleTestService.GetEmptyAnswerForStartedTestByUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             if (testAnswer != null)
             {
-                _puzzleTestService.ResetGame(testAnswer, moveCount);
+                _puzzleTestService.UpdatePuzzleTestAnswer(testAnswer, moveCount, gameDuration);
 
                 return Ok();
             }

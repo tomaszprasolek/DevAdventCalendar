@@ -9,7 +9,6 @@ namespace DevAdventCalendarCompetition.Services.Interfaces
     {
         TestAnswerDto GetEmptyAnswerForStartedTestByUser(string userId);
         void SaveEmptyTestAnswer(int testId, string userId);
-        void UpdatePuzzleTestAnswer(TestAnswerDto testAnswerDto, int moves, int gameDuration, string testEnd);
-        void ResetGame(TestAnswerDto testAnswerDto, int moveCount);
+        void UpdatePuzzleTestAnswer(TestAnswerDto testAnswerDto, int movesCount, int gameDuration);
     }
 }

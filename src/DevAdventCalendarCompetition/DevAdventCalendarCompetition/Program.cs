@@ -1,5 +1,5 @@
 using System;
-using DevAdventCalendarCompetition.Data;
+using DevAdventCalendarCompetition.Repository.Context;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
