@@ -13,7 +13,9 @@ namespace DevAdventCalendarCompetition
         {
             var host = BuildWebHost(args);
 
-            using(var scope = host.Services.CreateScope())
+            // Seeding database - maybe delete it later
+
+            /*using(var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
@@ -26,7 +28,7 @@ namespace DevAdventCalendarCompetition
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
-            }
+            }*/
 
             host.Run();
         }
