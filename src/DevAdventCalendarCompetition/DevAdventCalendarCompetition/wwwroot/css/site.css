@@ -78,44 +78,30 @@ button.navbar-toggle .icon-bar {
     height: 60px;
 }
 
-#santa {
-    height: 150px;
-    margin-right: 20px;
-    animation-name: tilt;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    -webkit-animation-name: tilt;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-duration: 8s;
-    -webkit-animation-direction: alternate;
+.calendar-content {
+    margin-top: 20px;
 }
 
-@keyframes tilt {   
-    10% {
-        transform: rotate(-20deg);
-        -webkit-transform: rotate(-20deg);
+    .calendar-content .calendar-day {
+        padding-right: 20px;
     }
-    50% {
-        transform: rotate(0);
-        -webkit-transform: rotate(0);
-    }
-    100% {
-        transform: rotate(20deg);
-        -webkit-transform: rotate(20deg);
-    }
-}
 
+    .calendar-content .calendar-day .panel.panel-default {
+        text-align: center;
+        font-weight: bold;
+        width: 120px;
+        border: none;
+        border-radius: 50% 50% 50% 50%;
+        background: rgba(76, 76, 76, 0.1);
+        opacity: 0.5;
+    }
+ 
 .content-centered {
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: row;
-}
-
-.container.body-content #home-santa.row {
-    min-height: 500px;
 }
 
 .container.body-content #contact.row {
