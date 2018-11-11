@@ -53,6 +53,10 @@ namespace DevAdventCalendarCompetition.Repository.Models
                 return TestStatus.Ended;
             }
         }
+
+        public string Description { get; set; }
+
+        public string HashedAnswer { get; set; }
     }
 
     public enum TestStatus
