@@ -102,6 +102,10 @@ button.navbar-toggle .icon-bar {
     .calendar-content .calendar-day .panel.panel-default.task-active {
         opacity: 1;
     }
+
+    .panel-body img {
+        max-width: 60px;
+    }
  
 .content-centered {
     display: flex;
@@ -220,8 +224,37 @@ address .col .row {
 
 @media screen and (max-width: 400px) {
 
+    .content-centered {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
     address {
         text-align: center;
     }
+
+    .calendar-content .calendar-day {
+        padding-right: 5px;
+    }
+
+        .calendar-content .calendar-day .panel.panel-default {
+            text-align: center;
+            font-weight: bold;
+            font-size: 6pt;
+            width: 60px;
+            border: none;
+            background: none;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+
+        .calendar-content .calendar-day .panel-body {
+            padding: 5px;
+        }
+
+        .calendar-content .calendar-day .panel-body img {
+            margin-top: 5px;
+            max-width: 40px;
+        }
 
 }
