@@ -232,7 +232,63 @@ address .col .row {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 991px) {
+
+    .calendar-content .calendar-day {
+        padding-right: 5px;
+    }
+
+    .content-centered {
+        flex-direction: column;
+        margin-top: 5px;
+    }
+
+        .calendar-content .calendar-day .panel.panel-default {
+            text-align: center;
+            font-weight: bold;
+            font-size: 10pt;
+            width: 100px;
+            border: none;
+            border-radius: 50% 50% 50% 50%;
+            background: rgba(76, 76, 76, 0.1);
+        }
+
+    .calendar-content .calendar-day .panel-body img {
+        margin-top: 5px;
+        max-width: 50px;
+    }
+
+}
+
+@media screen and (max-width: 648px) {
+
+    .calendar-content .calendar-day {
+        padding-right: 5px;
+    }
+
+    .content-centered {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .calendar-content .calendar-day .panel.panel-default {
+        text-align: center;
+        font-weight: bold;
+        font-size: 8pt;
+        width: 80px;
+        border: none;
+        border-radius: 50% 50% 50% 50%;
+        background: rgba(76, 76, 76, 0.1);
+    }
+
+    .calendar-content .calendar-day .panel-body img {
+        margin-top: 5px;
+        max-width: 40px;
+    }
+
+}
+
+@media screen and (max-width: 516px) {
 
     .content-centered {
         flex-direction: column;
