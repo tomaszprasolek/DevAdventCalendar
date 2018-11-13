@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DevAdventCalendarCompetition.Extensions;
 using DevAdventCalendarCompetition.Repository.Context;
-using DevAdventCalendarCompetition.Repository.Models;
+using DevAdventCalendarCompetition.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,34 +13,36 @@ using System.Globalization;
 
 namespace DevAdventCalendarCompetition
 {
-	public class Startup
-	{
-		private const string DockerEnvName = "Docker";
-		public Startup(IHostingEnvironment env)
-		{
-			var configurationBuilder = new ConfigurationBuilder()
-				.AddJsonFile($"appsettings.{env.EnvironmentName}.json")
-				.AddEnvironmentVariables();
+    public class Startup
+    {
+        private const string DockerEnvName = "Docker";
+
+        public Startup(IHostingEnvironment env)
+        {
+            var configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+                .AddEnvironmentVariables();
 
 			Configuration = configurationBuilder.Build();
 		}
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services
-				.RegisterDatabase(Configuration)
-				.RegisterServices()
-				.AddAutoMapper()
-				.RegisterMapping()
-				.AddSwaggerGen(c =>
-				{
-					c.SwaggerDoc("v1", new Info { Title = "QuickApp API", Version = "v1" });
-				})
-				.AddMvc();
-		}
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            ServicesStartup.Configure(services, Configuration);
+            services
+                .RegisterDatabase(Configuration)
+                .RegisterServices()
+                .AddAutoMapper()
+                .RegisterMapping()
+                .AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new Info { Title = "QuickApp API", Version = "v1" });
+                })
+                .AddMvc();
+        }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -58,7 +60,7 @@ namespace DevAdventCalendarCompetition
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
-			}			
+			}
 
 			app.UseStaticFiles();
 
